@@ -6,7 +6,7 @@ const applyButton = document.getElementById('apply');
 
 let image = new Image();
 
-// Load and display the image
+//Load Image
 upload.addEventListener('change', (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -19,32 +19,30 @@ upload.addEventListener('change', (event) => {
 });
 
 image.onload = () => {
-  // Set canvas width to twice the image width (side-by-side display)
   canvas.width = image.width * 2;
   canvas.height = image.height;
 
-  // Draw the original image on the left side
   ctx.drawImage(image, 0, 0);
 };
 
-// Apply the selected filter
+//Filter
 applyButton.addEventListener('click', () => {
   const selectedFilter = filterSelect.value;
 
-  // Draw the original image on the left side again
+  //Before
   ctx.drawImage(image, 0, 0);
 
-  // Get image data and apply filter
+  //Select Filter
   const imageData = ctx.getImageData(0, 0, canvas.width / 2, canvas.height);
   const filteredData = selectedFilter === 'grayscale' 
     ? applyGrayscale(imageData) 
     : applyBlur(imageData);
 
-  // Display the filtered image on the right side
+  //After
   ctx.putImageData(filteredData, canvas.width / 2, 0);
 });
 
-// Apply Grayscale
+//Grayscale
 function applyGrayscale(imageData) {
   const data = imageData.data;
 
@@ -53,7 +51,6 @@ function applyGrayscale(imageData) {
     const g = data[i + 1];
     const b = data[i + 2];
 
-    // Compute the grayscale value
     const gray = 0.299 * r + 0.587 * g + 0.114 * b;
     data[i] = data[i + 1] = data[i + 2] = gray;
   }
@@ -61,7 +58,7 @@ function applyGrayscale(imageData) {
   return imageData;
 }
 
-// Apply Blur
+//Blur
 function applyBlur(imageData) {
   const data = imageData.data;
   const width = imageData.width;
