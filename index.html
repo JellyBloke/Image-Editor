@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Image Editor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Upload and Transform Your Image</h1>
+  <br>
+  <h2>Choose an Image:</h2>
+  <input type="file" id="upload" accept="image/*">
+  <br>
+  <br>
+  <label for="filter">Choose an option:</label>
+  <br>
+  <br>
+  <select id="filter">
+    <option value="grayscale">Grayscale</option>
+    <option value="blur">Blur</option>
+  </select>
+  <br>
+  <button id="apply">Upload and Convert</button>
+  <br>
+  <canvas id="canvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
